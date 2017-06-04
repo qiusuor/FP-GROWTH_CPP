@@ -292,7 +292,15 @@ void fp_growth:: write_result(std::set<outcome>& out) {
 
 	int i = 0;
 	unsigned int max_times=0;
-	std::ofstream out_file("C:\\rule.csv");
+	std::ostringstream convert_suport;
+	convert_suport << minsup;
+
+	std::ostringstream convert_confidence;
+	convert_confidence << confidence;
+
+	std::string out_file_name = file_name + "_rules_suport_" + convert_suport.str()+ "_confidence_" +convert_confidence.str()+ ".csv";
+	std::cout << out_file_name;
+	std::ofstream out_file(out_file_name);
 	out_file << "\"\",\"Item\",\"Suport\",\"Confidence\"\n";
 	for (auto it:out)
 		items_times[it.items] = it.sup;
